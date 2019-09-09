@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		AB2B3E73231E28AD00B22599 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB2B3E72231E28AD00B22599 /* GoogleService-Info.plist */; };
+		AB2E20CC2326352E008AAB12 /* ProjectDescriptionTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2E20CB2326352E008AAB12 /* ProjectDescriptionTVCell.swift */; };
+		AB2E20CE23263589008AAB12 /* BaseTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2E20CD23263589008AAB12 /* BaseTVCell.swift */; };
+		AB2E20D02326365F008AAB12 /* ProjectDescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2E20CF2326365F008AAB12 /* ProjectDescriptionVC.swift */; };
+		AB2E20D423264F54008AAB12 /* ProductBacklogTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2E20D323264F54008AAB12 /* ProductBacklogTVCell.swift */; };
 		AB6710EC231E4DE300E2897E /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = AB6710EB231E4DE300E2897E /* .swiftlint.yml */; };
 		AB6710F5231E821C00E2897E /* EmailSignInPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6710F4231E821C00E2897E /* EmailSignInPopUpVC.swift */; };
 		AB6710F7231E9F6B00E2897E /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6710F6231E9F6B00E2897E /* FirebaseManager.swift */; };
@@ -17,6 +21,14 @@
 		ABB7B3572319405B0084B44D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABB7B3552319405B0084B44D /* Main.storyboard */; };
 		ABB7B359231940670084B44D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABB7B358231940670084B44D /* Assets.xcassets */; };
 		ABB7B35C231940670084B44D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABB7B35A231940670084B44D /* LaunchScreen.storyboard */; };
+		ABD335DE231FBFB50023AC98 /* ProductOwnerMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD335DD231FBFB50023AC98 /* ProductOwnerMainVC.swift */; };
+		ABD335E0231FC87A0023AC98 /* ProductOwner.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD335DF231FC87A0023AC98 /* ProductOwner.swift */; };
+		ABD335E2231FC8940023AC98 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD335E1231FC8940023AC98 /* Constants.swift */; };
+		ABD335E5231FFEC30023AC98 /* POProductBacklogCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD335E4231FFEC30023AC98 /* POProductBacklogCVCell.swift */; };
+		ABD335E7231FFED30023AC98 /* BaseCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD335E6231FFED30023AC98 /* BaseCVCell.swift */; };
+		ABD335E923200A150023AC98 /* AccDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD335E823200A150023AC98 /* AccDetailsVC.swift */; };
+		ABFF65E12321052100AD13D3 /* NewProjectPopOverVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFF65E02321052100AD13D3 /* NewProjectPopOverVC.swift */; };
+		ABFF65E32321179300AD13D3 /* POViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFF65E22321179300AD13D3 /* POViewModel.swift */; };
 		D05D77D163CBC0741EF458C5 /* Pods_AgileSrintPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60E798C9683F6D1E72EFC22D /* Pods_AgileSrintPlanner.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,7 +37,11 @@
 		49ADB83A3E89659CDA3CF487 /* Pods-AgileSrintPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgileSrintPlanner.release.xcconfig"; path = "Target Support Files/Pods-AgileSrintPlanner/Pods-AgileSrintPlanner.release.xcconfig"; sourceTree = "<group>"; };
 		60E798C9683F6D1E72EFC22D /* Pods_AgileSrintPlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AgileSrintPlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB2B3E72231E28AD00B22599 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		AB6710EB231E4DE300E2897E /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
+		AB2E20CB2326352E008AAB12 /* ProjectDescriptionTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDescriptionTVCell.swift; sourceTree = "<group>"; };
+		AB2E20CD23263589008AAB12 /* BaseTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTVCell.swift; sourceTree = "<group>"; };
+		AB2E20CF2326365F008AAB12 /* ProjectDescriptionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDescriptionVC.swift; sourceTree = "<group>"; };
+		AB2E20D323264F54008AAB12 /* ProductBacklogTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductBacklogTVCell.swift; sourceTree = "<group>"; };
+		AB6710EB231E4DE300E2897E /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .swiftlint.yml; path = AgileSrintPlanner/.swiftlint.yml; sourceTree = "<group>"; };
 		AB6710F4231E821C00E2897E /* EmailSignInPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSignInPopUpVC.swift; sourceTree = "<group>"; };
 		AB6710F6231E9F6B00E2897E /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		AB6710F8231F83FD00E2897E /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
@@ -36,6 +52,14 @@
 		ABB7B358231940670084B44D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ABB7B35B231940670084B44D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ABB7B35D231940670084B44D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ABD335DD231FBFB50023AC98 /* ProductOwnerMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProductOwnerMainVC.swift; path = "../New Group/ProductOwnerMainVC.swift"; sourceTree = "<group>"; };
+		ABD335DF231FC87A0023AC98 /* ProductOwner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductOwner.swift; sourceTree = "<group>"; };
+		ABD335E1231FC8940023AC98 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		ABD335E4231FFEC30023AC98 /* POProductBacklogCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POProductBacklogCVCell.swift; sourceTree = "<group>"; };
+		ABD335E6231FFED30023AC98 /* BaseCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCVCell.swift; sourceTree = "<group>"; };
+		ABD335E823200A150023AC98 /* AccDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccDetailsVC.swift; sourceTree = "<group>"; };
+		ABFF65E02321052100AD13D3 /* NewProjectPopOverVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectPopOverVC.swift; sourceTree = "<group>"; };
+		ABFF65E22321179300AD13D3 /* POViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +94,8 @@
 		AB6710EF231E802800E2897E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				ABD335DF231FC87A0023AC98 /* ProductOwner.swift */,
+				ABD335E1231FC8940023AC98 /* Constants.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -77,10 +103,13 @@
 		AB6710F0231E803600E2897E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				ABD335E3231FFE850023AC98 /* POView */,
 				ABB7B3532319405B0084B44D /* ViewController.swift */,
 				ABB7B3552319405B0084B44D /* Main.storyboard */,
 				AB6710F4231E821C00E2897E /* EmailSignInPopUpVC.swift */,
 				AB6710F8231F83FD00E2897E /* BaseVC.swift */,
+				ABD335E6231FFED30023AC98 /* BaseCVCell.swift */,
+				AB2E20CD23263589008AAB12 /* BaseTVCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -89,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				AB6710F6231E9F6B00E2897E /* FirebaseManager.swift */,
+				ABFF65E22321179300AD13D3 /* POViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -96,6 +126,7 @@
 		ABB7B3452319405A0084B44D = {
 			isa = PBXGroup;
 			children = (
+				AB6710EB231E4DE300E2897E /* .swiftlint.yml */,
 				ABB7B3502319405A0084B44D /* AgileSrintPlanner */,
 				ABB7B34F2319405A0084B44D /* Products */,
 				3EC762DC9F0C81989BC4FF14 /* Pods */,
@@ -122,9 +153,22 @@
 				ABB7B358231940670084B44D /* Assets.xcassets */,
 				ABB7B35A231940670084B44D /* LaunchScreen.storyboard */,
 				ABB7B35D231940670084B44D /* Info.plist */,
-				AB6710EB231E4DE300E2897E /* .swiftlint.yml */,
 			);
 			path = AgileSrintPlanner;
+			sourceTree = "<group>";
+		};
+		ABD335E3231FFE850023AC98 /* POView */ = {
+			isa = PBXGroup;
+			children = (
+				ABD335DD231FBFB50023AC98 /* ProductOwnerMainVC.swift */,
+				ABD335E4231FFEC30023AC98 /* POProductBacklogCVCell.swift */,
+				ABD335E823200A150023AC98 /* AccDetailsVC.swift */,
+				ABFF65E02321052100AD13D3 /* NewProjectPopOverVC.swift */,
+				AB2E20CB2326352E008AAB12 /* ProjectDescriptionTVCell.swift */,
+				AB2E20D323264F54008AAB12 /* ProductBacklogTVCell.swift */,
+				AB2E20CF2326365F008AAB12 /* ProjectDescriptionVC.swift */,
+			);
+			path = POView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,11 +344,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB2E20CE23263589008AAB12 /* BaseTVCell.swift in Sources */,
 				AB6710F7231E9F6B00E2897E /* FirebaseManager.swift in Sources */,
+				AB2E20CC2326352E008AAB12 /* ProjectDescriptionTVCell.swift in Sources */,
+				ABFF65E32321179300AD13D3 /* POViewModel.swift in Sources */,
+				ABD335E7231FFED30023AC98 /* BaseCVCell.swift in Sources */,
 				ABB7B3542319405B0084B44D /* ViewController.swift in Sources */,
+				AB2E20D423264F54008AAB12 /* ProductBacklogTVCell.swift in Sources */,
 				AB6710F5231E821C00E2897E /* EmailSignInPopUpVC.swift in Sources */,
+				ABD335E0231FC87A0023AC98 /* ProductOwner.swift in Sources */,
+				ABD335E923200A150023AC98 /* AccDetailsVC.swift in Sources */,
+				AB2E20D02326365F008AAB12 /* ProjectDescriptionVC.swift in Sources */,
+				ABD335DE231FBFB50023AC98 /* ProductOwnerMainVC.swift in Sources */,
 				ABB7B3522319405B0084B44D /* AppDelegate.swift in Sources */,
 				AB6710F9231F83FD00E2897E /* BaseVC.swift in Sources */,
+				ABFF65E12321052100AD13D3 /* NewProjectPopOverVC.swift in Sources */,
+				ABD335E5231FFEC30023AC98 /* POProductBacklogCVCell.swift in Sources */,
+				ABD335E2231FC8940023AC98 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

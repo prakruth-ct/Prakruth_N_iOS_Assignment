@@ -15,30 +15,33 @@ import GoogleSignIn
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let temp = FirebaseApp.configure()
+    var firebase = FirebaseManager()
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        FirebaseApp.configure()
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {        
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
-//        let authUI = FUIAuth.defaultAuthUI()
-//        let providers: [FUIAuthProvider] = [FUIGoogleAuth()]
-//        authUI?.providers = providers
-//        authUI?.delegate = self
-//        
-//        guard let authVC = authUI?.authViewController() else { return true }
-//        
-//        window = UIWindow(frame: UIScreen.main.bounds)
-//        window?.rootViewController = authVC
-//        window?.makeKeyAndVisible()
-        // Override point for customization after application launch.
+        if let role = UserDefaults.standard.object(forKey: Constants.UserDefaults.role) as? String {
+            switch role {
+            case Roles.developer.rawValue:
+                print("")
+            case Roles.productOwner.rawValue:
+                guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String(describing: ProductOwnerMainVC.self)) as? ProductOwnerMainVC else { return true }
+                let navigationController = UINavigationController(rootViewController: viewController)
+                window?.rootViewController = navigationController
+            case Roles.projectManager.rawValue:
+                print("")
+            default:
+                guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String(describing: ViewController.self)) as? ViewController else { return true }
+                window?.rootViewController = viewController
+            }
+        }
+        else {
+            guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String(describing: ViewController.self)) as? ViewController else { return true }
+            window?.rootViewController = viewController
+        }
+        window?.makeKeyAndVisible()
         return true
     }
-
-    func applicationWillResignActive(_ application: UIApplication) {
-    }
-
-    func applicationDidEnterBackground(_ application: UIApplication) {
-    }
-
     func applicationWillEnterForeground(_ application: UIApplication) {
     }
 

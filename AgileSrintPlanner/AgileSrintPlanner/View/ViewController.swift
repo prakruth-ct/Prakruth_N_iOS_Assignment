@@ -1,81 +1,135 @@
-//
-//  ViewController.swift
-//  AgileSrintPlanner
-//
-//  Created by Prakruth Nagaraj on 30/08/19.
-//  Copyright © 2019 Prakruth Nagaraj. All rights reserved.
-//
-
 import UIKit
 import Firebase
 import Crashlytics
+import GoogleSignIn
+import FirebaseUI
 
-class ViewController: UIViewController {
+class ViewController: BaseVC, GIDSignInDelegate, GIDSignInUIDelegate {
     
-    @IBOutlet weak var gSignInButton: UIButton!
-    @IBOutlet weak var emailSignInButton: UIButton!
-    @IBOutlet weak var signUpButton: UIButton!
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var passwordextField: UITextField!
-//    let temp = FirebaseApp.configure()
-//    var db = Firestore.firestore()
-//    var ref: DatabaseReference!
-//
+    @IBOutlet private weak var emailSignInButton: UIButton!
+    @IBOutlet private weak var signUpButton: UIButton!
+    @IBOutlet private weak var nameTextField: UITextField!
+    @IBOutlet private weak var passwordextField: UITextField!
+    
+    var fireBaseManager = FirebaseManager()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        gSignInButton.imageView?.contentMode = .scaleAspectFit
+        GIDSignIn.sharedInstance()?.uiDelegate = self
+        GIDSignIn.sharedInstance()?.delegate = self
+        setupTextFieldDelegates()
         emailSignInButton.imageView?.contentMode = .scaleAspectFit
-        
-        
-        
-//        let db = Firestore.firestore()
-//        db.collection("Test").getDocuments(completion: {(querySnaps, error) in
-//            if let err = error{
-//                print(err)
-//            }
-//            else{
-//                for document in querySnaps!.documents {
-//                    print("\(document.documentID) \(document.data())")
-//                }
-//            }
-//            })
-        
-//        ref = Database.database().reference()
-//        self.ref.child("users").child(user.uid).setValue(["username": "username"])
-//        ref.child("Test").child("Test").setValue("Prakruth N", forKey: "Name")
-        // Do any additional setup after loading the view, typically from a nib.
+        NotificationCenter.default.addObserver(self, selector: #selector(moveViewWhenKeyboardAppears), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(moveViewWhenKeyboardAppears), name: UIResponder.keyboardWillShowNotification, object: nil)
     }
     
-    @IBAction func newUserButtonDidPress(_ button: UIButton) {
+    @IBAction private func newUserButtonDidPress(_ button: UIButton) {
         guard let popVC = self.storyboard?.instantiateViewController(withIdentifier: String(describing: EmailSignInPopUpVC.self)) as? EmailSignInPopUpVC else { fatalError() }
-        self.addChild(popVC)
+        
+        addChild(popVC)
         popVC.view.frame = view.frame
         view.addSubview(popVC.view)
         popVC.didMove(toParent: self)
     }
+
+    @IBAction private func emailLoginButtonDidPress(_ button: UIButton) {
+        if nameTextField?.text?.isEmpty ?? true || passwordextField?.text?.isEmpty ?? true {
+            showAlert(title: "Login Failed", msg: "Email or Password Missing", actionTitle: "Close")
+        } else if !isValidEmail(email: nameTextField.text ?? "") {
+            showAlert(title: "Login Failed", msg: "Email Id Wrongly Formated", actionTitle: "Close")
+        } else {
+            super.startLoading()
+            fireBaseManager.emailUserLogin(email: nameTextField?.text, password: passwordextField?.text) { (user, error) in
+                if error != "nil" {
+                    self.showAlert(title: "Login Failed", msg: error, actionTitle: "Try Again")
+                } else {
+                    self.fireBaseManager.decideUserRole(user: Auth.auth().currentUser) { (viewController, role) in
+                        UserDefaults.standard.set(role, forKey: Constants.UserDefaults.role)
+                        guard let viewController = viewController else { return }
+                        let currentUser = Auth.auth().currentUser
+                        currentUser?.getIDTokenResult(forcingRefresh: true, completion: { (token, error) in
+                                UserDefaults.standard.set(token?.claims, forKey: Constants.UserDefaults.currentUser)
+                        })
+                        let navigationController = UINavigationController(rootViewController: viewController)
+                        self.present(navigationController, animated: true, completion: nil)
+//                        self.navigationController?.pushViewController(viewController, animated: true)
+                    }
+                }
+                //CANNOT CALL SUPER WITH WEAK SELF
+                super.stopLoading()
+            }
+        }
+    }
     
-    @IBAction func duttonDidPress(_ button: UIButton) {
-//        var ref: DocumentReference = db.collection("Test").addDocument(data: ["name": "Bought Something", "fullName": "Bought something else"]) { err in
-//            if let err = err{
-//                print("Error")
-//            }
-//            else{
-//                print("Added")
-//            }
-//        }
-//        let db2 = Database.database().reference().child("Testing")
-//        let mesg = ["Sender": "Names", "msgBody": "Hello"]
-//        db2.childByAutoId().setValue(mesg) { (error, ref) in
-//            if error != nil{
-//                print(error)
-//            }
-//            else{
-//                print("YES")
-//            }
-//        }
-        Crashlytics.sharedInstance().crash()
+    @IBAction private func passwordHideShowButtonDidPress(_ button: UIButton) {
+        if passwordextField.isSecureTextEntry {
+            passwordextField.isSecureTextEntry = false
+        } else {
+            passwordextField.isSecureTextEntry = true
+        }
     }
 
-
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        let touch: UITouch? = touches.first
+        view.endEditing(true)
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+            print(error)
+            return
+        }
+        guard let authentication = user.authentication else { return }
+        
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
+                                                       accessToken: authentication.accessToken)
+        Auth.auth().signIn(with: credential) { (authResult, error) in
+            if let error = error {
+                print(error)
+                return
+            }
+            
+            let firebaseAuth = Auth.auth()
+            do {
+                try firebaseAuth.signOut()
+            } catch let signOutError as NSError {
+                print ("Error signing out: %@", signOutError)
+            }
+        }
+    }
+    
+    @objc func moveViewWhenKeyboardAppears(notification: Notification) {
+        let notificationInfoObj = notification.userInfo
+        guard let notificationInfo = notificationInfoObj else { return }
+        
+        if notification.name == UIResponder.keyboardWillShowNotification {
+            if let keyBoardFrame = (notificationInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                if self.view.frame.origin.y == 0 {
+                    self.view.frame.origin.y -= keyBoardFrame.height
+                }
+            }else {
+                return
+            }
+        }else if notification.name == UIResponder.keyboardWillHideNotification {
+            if self.view.frame.origin.y != 0 {
+                self.view.frame.origin.y = 0
+            }
+        }
+    }
 }
 
+extension ViewController: UITextFieldDelegate {
+    
+    func setupTextFieldDelegates() {
+        passwordextField.delegate = self
+        passwordextField.returnKeyType = .done
+        nameTextField.delegate = self
+        nameTextField.returnKeyType = .next
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
